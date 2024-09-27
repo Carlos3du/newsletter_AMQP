@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/consumidor/consumidor.iml" filepath="$PROJECT_DIR$/consumidor/consumidor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/newsletter_fccpd.iml" filepath="$PROJECT_DIR$/newsletter_fccpd.iml" />
+    </modules>
+  </component>
+</project>
