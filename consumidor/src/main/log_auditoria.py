@@ -1,33 +1,28 @@
 import pika as pk
+import src.main.modules.general_functions as gf
 
-
-# Conexão com o servidor AMQP (RabbitMQ, por exemplo)
-connection = pk.BlockingConnection(pk.ConnectionParameters('localhost'))
+# URL de conexão com CloudAMQP
+url = "amqps://nqhehetw:AxqCWPtqfY1pZK3420clEM7AczyXA9x2@jackal-01.rmq.cloudamqp.com/nqhehetw"
+params = pk.URLParameters(url)
+connection = pk.BlockingConnection(params)
 channel = connection.channel()
 
 # Declarar o exchange do tipo 'topic'
-channel.exchange_declare(exchange='meu_exchange', exchange_type='topic')
+channel.exchange_declare(exchange='channel_exchange', exchange_type='topic')
+result = channel.queue_declare('', exclusive=True)
+queue_name = result.method.queue
 
-# Criar uma fila durável para o consumidor de auditoria
-channel.queue_declare(queue='auditoria_fila', durable=True)
+routing_key = "rota.um.#"
 
-# Binding da fila com o exchange e o padrão '#' para capturar todas as mensagens
-routing_key = "#"
-channel.queue_bind(exchange='meu_exchange', queue='auditoria_fila', routing_key=routing_key)
+# Binding da fila com o exchange e a rota especificada
+channel.queue_bind(exchange='channel_exchange', queue=queue_name, routing_key=routing_key)
 
-print(f" [*] Consumidor de auditoria aguardando todas as mensagens...")
+print(f"[STATUS_CONSUMIDOR] Consumidor aguardando mensagens da rota: {routing_key}")
 
-# Função callback para processar as mensagens recebidas
-def callback(ch, method, properties, body):
-    print(f" [AUDITORIA] Mensagem recebida com chave {method.routing_key}: {body.decode()}")
-    # Confirmação manual que a mensagem foi recebida e processada
-    ch.basic_ack(delivery_tag=method.delivery_tag)
+# Consumidor se inscreve na fila e escuta as mensagens
+channel.basic_consume(queue=queue_name,
+                      on_message_callback=gf.callback,
+                      auto_ack=True)
 
-
-
-# Consumidor se inscreve na fila e escuta todas as mensagens
-channel.basic_consume(queue='auditoria_fila',
-                      on_message_callback=callback)
-
-print(' [*] Aguardando todas as mensagens. Para sair, pressione CTRL+C')
+print('[STATUS_CONSUMIDOR] Aguardando mensagens...')
 channel.start_consuming()

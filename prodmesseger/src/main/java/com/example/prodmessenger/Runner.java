@@ -35,6 +35,7 @@ public class Runner implements CommandLineRunner {
             System.out.println("Mensagem enviada: " + msg);
         }
 
-        context.close();  // Fecha o contexto do Spring quando o loop terminar
+        // Fecha o contexto do Spring quando o loop terminar
+        context.close();
     }
 }

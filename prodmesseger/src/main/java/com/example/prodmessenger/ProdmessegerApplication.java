@@ -3,23 +3,12 @@ package com.example.prodmessenger;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-
 @SpringBootApplication
 public class ProdmessegerApplication {
 
-    // Nome do exchange
-    static final String topicExchangeName = "topic-exchange";
-
-    // Chave de roteamento (pode ser personalizada ou modificada conforme necessário)
-    static final String routingKey = "rota.um.#";
-
-    // Define o exchange do tipo 'topic'
-    @Bean
-    public TopicExchange exchange() {
-        return new TopicExchange(topicExchangeName, false, true);
-    }
+    // Defina o exchange e a chave de roteamento
+    static final String topicExchangeName = "channel_exchange";
+    static final String routingKey = "rota.um.#";  // Chave de roteamento
 
     public static void main(String[] args) {
         SpringApplication.run(ProdmessegerApplication.class, args);
