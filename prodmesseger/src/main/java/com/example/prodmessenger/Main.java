@@ -22,7 +22,7 @@ public class Main {
                 switch (escolha) {
                     case 1:
                         System.out.println("Iniciando o Produtor...");
-                        SpringApplication.run(ProdmessengerApplication.class, args); // Inicia o produtor
+                        SpringApplication.run(ProdmessegerApplication.class, args); // Inicia o produtor
                         break;
                     case 2:
                         System.out.println("Iniciando Auditoria (opcional, se houver implementação futura)...");

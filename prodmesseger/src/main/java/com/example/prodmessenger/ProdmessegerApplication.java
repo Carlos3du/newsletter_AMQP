@@ -5,8 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+
 @SpringBootApplication
-public class ProdmessengerApplication {
+public class ProdmessegerApplication {
 
     // Nome do exchange
     static final String topicExchangeName = "topic-exchange";
@@ -21,6 +22,6 @@ public class ProdmessengerApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(ProdmessengerApplication.class, args);
+        SpringApplication.run(ProdmessegerApplication.class, args);
     }
 }
