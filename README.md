@@ -29,5 +29,4 @@ Após a instalação do plugin Python, configure o Python Interpreter seguindo o
 `pip install pika`
 
 
-### 6. Instalar o RabbitMQ ( eu nao tinha no pc então to instalando)
-https://www.rabbitmq.com/docs/install-windows#installer
+### PRONTO, ERA PRA FUNCIONAR NA SUA MAQUINA
