@@ -30,7 +30,7 @@ public class Runner implements CommandLineRunner {
             }
 
             // Envia a mensagem para o exchange e a rota especificada
-            rabbitTemplate.convertAndSend(ProdmessengerApplication.topicExchangeName, ProdmessengerApplication.routingKey, msg);
+            rabbitTemplate.convertAndSend(ProdmessegerApplication.topicExchangeName, ProdmessegerApplication.routingKey, msg);
 
             System.out.println("Mensagem enviada: " + msg);
         }
