@@ -18,12 +18,12 @@ queue_name = result.method.queue
 
 # As rotas disponíveis pra escolha:
 rotas = {
-    '1': 'Papo com CHOQUEI (Gustavo Lima, Deolane, Juliette)', # Rota pra Choquei que tem Gustavo Lima, Deolane, Juliette
-    '2': 'Papo com astros da Música',                          # Rota pra Música que tem Gustavo Lima, Deolane, Juliette
-    '3': 'Papo com Gustavo Lima',                              # Rota individual pra Gustavo Lima
-    '4': 'Papo com Deolane',                                   # Rota individual pra Deolane
-    '5': 'Papo com Juliette',                                  # Rota individual pra Juliette
-    '6': 'Papo exclusivo com CHOQUEI e Gustavo Lima',          # Rota pra Choquei e Gustavo Lima
+    '1': 'rota.choquei.#',             # Rota pra Choquei que tem Gustavo Lima, Deolane, Juliette
+    '2': 'rota.musica.#',              # Rota pra Música que tem Gustavo Lima, Deolane, Juliette
+    '3': 'rota.*.gustavolima',         # Rota individual pra Gustavo Lima
+    '4': 'rota.*.deolane',             # Rota individual pra Deolane
+    '5': 'rota.*.juliette',            # Rota individual pra Juliette
+    '6': 'rota.choquei.gustavolima',   # Rota pra Choquei e Gustavo Lima       # Rota pra Choquei e Gustavo Lima
 }
 
 # A pessoa vai ver as rotas disponíveis naquele dia:

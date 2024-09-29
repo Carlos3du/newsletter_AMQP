@@ -10,10 +10,12 @@
         <option value="$PROJECT_DIR$/consumidor/pom.xml" />
         <option value="$PROJECT_DIR$/produtor_java/pom.xml" />
         <option value="$PROJECT_DIR$/prodmesseger/pom.xml" />
+        <option value="$PROJECT_DIR$/prodmesseger2/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/prodmesseger2/pom.xml" />
         <option value="$PROJECT_DIR$/produtor/pom.xml" />
         <option value="$PROJECT_DIR$/produtor_java/pom.xml" />
       </set>

@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageDeliveryMode;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -79,7 +82,17 @@ public class Runner implements CommandLineRunner {
 
             String mensagemFormatada = formatarMensagem(nomeDoInfluenciador, corpoDaMensagem);
 
-            rabbitTemplate.convertAndSend(ProdmessegerApplication.topicExchangeName, routingKey, mensagemFormatada);
+            // Enviar a mensagem com a configuração de persistência
+            rabbitTemplate.convertAndSend(
+                    ProdmessegerApplication.topicExchangeName,
+                    routingKey,
+                    mensagemFormatada,
+                    message -> {
+                        MessageProperties messageProperties = message.getMessageProperties();
+                        messageProperties.setDeliveryMode(MessageDeliveryMode.PERSISTENT); // Persistente
+                        return message;
+                    }
+            );
 
             System.out.println("Mensagem enviada: " + mensagemFormatada);
         }

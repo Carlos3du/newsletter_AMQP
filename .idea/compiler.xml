@@ -10,6 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="prodmesseger (1)" target="17" />
       <module name="produtor" target="1.8" />
       <module name="produtor_java" target="1.8" />
     </bytecodeTargetLevel>
@@ -17,6 +18,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="prodmesseger" options="-parameters" />
+      <module name="prodmesseger (1)" options="-parameters" />
       <module name="produtor_java" options="" />
     </option>
   </component>
