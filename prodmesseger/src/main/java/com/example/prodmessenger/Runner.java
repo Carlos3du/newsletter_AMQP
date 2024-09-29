@@ -22,9 +22,9 @@ public class Runner implements CommandLineRunner {
     static {
         rotas.put("1", "rota.choquei.#");
         rotas.put("2", "rota.musica.#");
-        rotas.put("3", "rota.gustavolima.#");
-        rotas.put("4", "rota.deolane.#");
-        rotas.put("5", "rota.juliette.#");
+        rotas.put("3", "rota.*.gustavolima");
+        rotas.put("4", "rota.*.deolane");
+        rotas.put("5", "rota.*.juliette");
         rotas.put("6", "rota.choquei.gustavolima");
     }
 

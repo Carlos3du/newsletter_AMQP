@@ -20,9 +20,9 @@ queue_name = result.method.queue
 rotas = {
     '1': 'rota.choquei.#',             # Rota pra Choquei que tem Gustavo Lima, Deolane, Juliette
     '2': 'rota.musica.#',              # Rota pra Música que tem Gustavo Lima, Deolane, Juliette
-    '3': 'rota.gustavolima.#',         # Rota individual pra Gustavo Lima
-    '4': 'rota.deolane.#',             # Rota individual pra Deolane
-    '5': 'rota.juliette.#',            # Rota individual pra Juliette
+    '3': 'rota.*.gustavolima',         # Rota individual pra Gustavo Lima
+    '4': 'rota.*.deolane',             # Rota individual pra Deolane
+    '5': 'rota.*.juliette',            # Rota individual pra Juliette
     '6': 'rota.choquei.gustavolima',   # Rota pra Choquei e Gustavo Lima
 }
 
