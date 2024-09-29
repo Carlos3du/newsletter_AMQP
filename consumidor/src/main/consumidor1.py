@@ -16,8 +16,31 @@ channel.exchange_declare(exchange='channel_exchange', exchange_type='topic')
 result = channel.queue_declare('', exclusive=True)
 queue_name = result.method.queue
 
-# Definir a rota que será usada para capturar mensagens
-routing_key = "rota.um.#"  # Essa rota capturará qualquer coisa que comece com 'rota.um.'
+# As rotas disponíveis pra escolha:
+rotas = {
+    '1': 'rota.choquei.#',             # Rota pra Choquei que tem Gustavo Lima, Deolane, Juliette
+    '2': 'rota.musica.#',              # Rota pra Música que tem Gustavo Lima, Deolane, Juliette
+    '3': 'rota.gustavolima.#',         # Rota individual pra Gustavo Lima
+    '4': 'rota.deolane.#',             # Rota individual pra Deolane
+    '5': 'rota.juliette.#',            # Rota individual pra Juliette
+    '6': 'rota.choquei.gustavolima',   # Rota pra Choquei e Gustavo Lima
+}
+
+# A pessoa vai ver as rotas disponíveis naquele dia:
+print("Veja as rotas dispoíveis para participar:")
+for key, route in rotas.items():
+    print(f"{key}: {route}")
+
+# Agora ela vai escolher:
+while True:
+    escolha = input("Agora escolha com que você vai interagir hoje:")
+
+    # Validação:
+    if escolha in rotas:
+        routing_key = rotas[escolha]
+        break
+    else:
+        print("Escolha inválida. Tente novamente.")
 
 # Binding da fila com o exchange e a rota especificada
 channel.queue_bind(exchange='channel_exchange', queue=queue_name, routing_key=routing_key)

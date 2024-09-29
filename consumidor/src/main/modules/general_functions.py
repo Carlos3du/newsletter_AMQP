@@ -11,12 +11,12 @@ def menu():
     choice = input("Digite a opção desejada para começar: ")
 
     routes = {
-        '1': 'choquei.#',
-        '2': 'musica.#',
-        '3': '*.gustavolima',
-        '4': '*.deolane',
-        '5': '*.juliette',
-        '6': 'choquei.gustavolima'
+        '1': 'rota.choquei.#',
+        '2': 'rota.musica.#',
+        '3': 'rota.*.gustavolima',
+        '4': 'rota.*.deolane',
+        '5': 'rota.*.juliette',
+        '6': 'rota.choquei.gustavolima'
     }
     return routes.get(choice, 'choquei.#')  # Padrão 'choquei.#' caso escolha inválida
 
