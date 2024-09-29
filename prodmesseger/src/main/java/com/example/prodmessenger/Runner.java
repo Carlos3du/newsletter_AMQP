@@ -37,7 +37,6 @@ public class Runner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
-        // Mostrar as opções de rota e pedir para o usuário escolher uma
         System.out.println("Selecione a rota:");
         System.out.println("1 - Choquei");
         System.out.println("2 - Musica");
@@ -48,7 +47,6 @@ public class Runner implements CommandLineRunner {
         System.out.print("Digite o número da rota: ");
         String escolhaRota = scanner.nextLine();
 
-        // Verificar se a escolha é válida e obter a chave de roteamento
         String routingKey = rotas.get(escolhaRota);
         if (routingKey == null) {
             System.out.println("Rota inválida. Encerrando...");
@@ -56,9 +54,20 @@ public class Runner implements CommandLineRunner {
             return;
         }
 
-        // Perguntar o nome do influenciador uma vez no início
-        System.out.print("Digite o nome do influenciador: ");
-        String nomeDoInfluenciador = scanner.nextLine();
+        String nomeDoInfluenciador = null;
+
+        if (escolhaRota.equals("1") || escolhaRota.equals("2")) {
+            System.out.print("Digite o nome do influenciador (Gustavo Lima, Deolane, Juliette): ");
+            nomeDoInfluenciador = scanner.nextLine().toLowerCase();
+
+            routingKey = routingKey.replace("#", "*" + "." + nomeDoInfluenciador);
+        } else if (escolhaRota.equals("3")) {
+            nomeDoInfluenciador = "Gustavo Lima";
+        } else if (escolhaRota.equals("4")) {
+            nomeDoInfluenciador = "Deolane";
+        } else if (escolhaRota.equals("5")) {
+            nomeDoInfluenciador = "Juliette";
+        }
 
         while (true) {
             System.out.println("Digite a mensagem ou 'sair' para encerrar:");
@@ -68,20 +77,16 @@ public class Runner implements CommandLineRunner {
                 break;
             }
 
-            // Formatar a mensagem com a data e hora atuais, o nome do influenciador e o corpo da mensagem
             String mensagemFormatada = formatarMensagem(nomeDoInfluenciador, corpoDaMensagem);
 
-            // Envia a mensagem para o exchange e a rota especificada
             rabbitTemplate.convertAndSend(ProdmessegerApplication.topicExchangeName, routingKey, mensagemFormatada);
 
             System.out.println("Mensagem enviada: " + mensagemFormatada);
         }
 
-        // Fecha o contexto do Spring quando o loop terminar
         context.close();
     }
 
-    // Metodo para formatar a mensagem no padrão desejado
     private String formatarMensagem(String nomeDoInfluenciador, String corpoDaMensagem) {
         LocalDateTime agora = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
