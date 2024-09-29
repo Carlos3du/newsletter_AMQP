@@ -16,28 +16,13 @@ channel.exchange_declare(exchange='channel_exchange', exchange_type='topic')
 result = channel.queue_declare('', exclusive=True)
 queue_name = result.method.queue
 
-# As rotas disponíveis pra escolha:
-rotas = {
-    '1': 'rota.choquei.#',             # Rota pra Choquei que tem Gustavo Lima, Deolane, Juliette
-    '2': 'rota.musica.#',              # Rota pra Música que tem Gustavo Lima, Deolane, Juliette
-    '3': 'rota.*.gustavolima',         # Rota individual pra Gustavo Lima
-    '4': 'rota.*.deolane',             # Rota individual pra Deolane
-    '5': 'rota.*.juliette',            # Rota individual pra Juliette
-    '6': 'rota.choquei.gustavolima',   # Rota pra Choquei e Gustavo Lima       # Rota pra Choquei e Gustavo Lima
-}
-
-# A pessoa vai ver as rotas disponíveis naquele dia:
-print("Veja as rotas dispoíveis para participar:")
-for key, route in rotas.items():
-    print(f"{key}: {route}")
-
 # Agora ela vai escolher:
 while True:
-    escolha = input("Agora escolha com que você vai interagir hoje:")
+    escolha = gf.menu()
 
     # Validação:
-    if escolha in rotas:
-        routing_key = rotas[escolha]
+    if escolha != 0:
+        routing_key = escolha
         break
     else:
         print("Escolha inválida. Tente novamente.")
@@ -45,12 +30,13 @@ while True:
 # Binding da fila com o exchange e a rota especificada
 channel.queue_bind(exchange='channel_exchange', queue=queue_name, routing_key=routing_key)
 
-print(f"[STATUS_CONSUMIDOR] Consumidor aguardando mensagens da rota: {routing_key}")
+
+print(f'[STATUS_CONSUMIDOR] Bem vindo ao canal {routing_key}, aguardando mensagens...')
 
 # Consumidor se inscreve na fila e escuta as mensagens
 channel.basic_consume(queue=queue_name,
                       on_message_callback=gf.callback,
                       auto_ack=True)
 
-print('[STATUS_CONSUMIDOR] Aguardando mensagens...')
+
 channel.start_consuming()

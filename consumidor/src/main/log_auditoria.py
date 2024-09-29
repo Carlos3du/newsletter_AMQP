@@ -22,15 +22,8 @@ channel.queue_bind(exchange='channel_exchange', queue=queue_name, routing_key=ro
 
 print(f"[STATUS_AUDITORIA] Log de auditoria aguardando todas as mensagens...")
 
-# Função callback para processar as mensagens recebidas
-def callback(ch, method, properties, body):
-    print(f" [AUDITORIA] Mensagem recebida com chave {method.routing_key}: {body.decode()}")
-    ch.basic_ack(delivery_tag=method.delivery_tag)  # Confirmação manual de que a mensagem foi processada
-
-# Consumidor se inscreve na fila e escuta todas as mensagens
 channel.basic_consume(queue=queue_name,
-                      on_message_callback=callback,
-                      auto_ack=False)  # auto_ack=False para confirmar manualmente o processamento
+                      on_message_callback=gf.callback_log,
+                      auto_ack=False)
 
-print('[STATUS_AUDITORIA] Aguardando todas as mensagens para auditoria...')
 channel.start_consuming()
