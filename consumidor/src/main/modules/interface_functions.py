@@ -20,15 +20,16 @@ def menu():
     }
 
     if choice in routes:
-        return routes.get(choice)  # Padrão 'choquei.#' caso escolha inválida
+        return routes.get(choice)
     else:
         return 0
 
-# Função callback para processar as mensagens recebidas
+
+
 def callback(ch, method, properties, body):
     print(f"{method.routing_key}{body.decode()}")
 
-# Função callback para processar as mensagens recebidas
+
 def callback_log(ch, method, properties, body):
     print(f"[AUDITORIA] {method.routing_key}: {body.decode()}")
     ch.basic_ack(delivery_tag=method.delivery_tag)
