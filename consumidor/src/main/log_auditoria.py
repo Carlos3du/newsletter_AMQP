@@ -17,7 +17,7 @@ queue_name = 'auditoria_log'
 channel.queue_declare(queue=queue_name, durable=True)
 
 
-routing_key = '#'
+routing_key = 'route.#'
 channel.queue_bind(exchange='channel_exchange', queue=queue_name, routing_key=routing_key)
 
 
