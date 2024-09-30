@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="prodmesseger" />
+        <module name="prodmesseger (2)" />
         <module name="prodmesseger (1)" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="prodmesseger" options="-parameters" />
       <module name="prodmesseger (1)" options="-parameters" />
+      <module name="prodmesseger (2)" options="-parameters" />
       <module name="produtor_java" options="" />
     </option>
   </component>

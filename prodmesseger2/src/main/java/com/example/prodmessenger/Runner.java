@@ -80,7 +80,7 @@ public class Runner implements CommandLineRunner {
             case "1", "2" -> {
                 System.out.print("Digite o nome do influenciador (Gustavo Lima, Deolane, Juliette): ");
                 nomeDoInfluenciador = scanner.nextLine().toLowerCase();
-                routingKey = routingKey.replace("#", "*" + "." + nomeDoInfluenciador);
+                routingKey = routingKey.replace("#",  nomeDoInfluenciador);
             }
         }
 
