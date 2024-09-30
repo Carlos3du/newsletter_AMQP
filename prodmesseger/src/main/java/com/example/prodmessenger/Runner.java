@@ -29,7 +29,6 @@ public class Runner implements CommandLineRunner {
         rotas.put("3", "rota.#.gustavolima");
         rotas.put("4", "rota.#.deolane");
         rotas.put("5", "rota.#.juliette");
-        rotas.put("6", "rota.choquei.gustavolima");
     }
 
     public Runner(RabbitTemplate rabbitTemplate, ConfigurableApplicationContext context) {
@@ -48,7 +47,6 @@ public class Runner implements CommandLineRunner {
         System.out.println("3 - Gustavo Lima");
         System.out.println("4 - Deolane");
         System.out.println("5 - Juliette");
-        System.out.println("6 - Choquei Apenas de Gustavo Lima");
         System.out.print("Digite o número da rota: ");
         String escolhaRota = scanner.nextLine();
 
@@ -80,7 +78,7 @@ public class Runner implements CommandLineRunner {
             case "1", "2" -> {
                 System.out.print("Digite o nome do influenciador (Gustavo Lima, Deolane, Juliette): ");
                 nomeDoInfluenciador = scanner.nextLine().toLowerCase();
-                routingKey = routingKey.replace("#", "." + nomeDoInfluenciador);
+                routingKey = routingKey.replace("#", nomeDoInfluenciador);
             }
         }
 
