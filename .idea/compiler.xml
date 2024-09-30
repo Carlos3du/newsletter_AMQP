@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="prodmesseger" />
+        <module name="prodmesseger (1)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="prodmesseger (1)" target="17" />
       <module name="produtor" target="1.8" />
       <module name="produtor_java" target="1.8" />
     </bytecodeTargetLevel>

@@ -26,7 +26,7 @@ def menu():
 
 # Função callback para processar as mensagens recebidas
 def callback(ch, method, properties, body):
-    print(f"{body.decode()}")
+    print(f"{method.routing_key}{body.decode()}")
 
 # Função callback para processar as mensagens recebidas
 def callback_log(ch, method, properties, body):
